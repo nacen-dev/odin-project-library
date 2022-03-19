@@ -13,9 +13,53 @@
       <h1 class="header-title">Book Library</h1>
     </header>
     <main>
-      <section class="books-display">
-       
-      </section>
+      <section class="books-display"></section>
+      <div class="book-form-container">
+        <form class="book-form" hidden>
+          <ul>
+            <li>
+              <label for="book-title">Book Title: </label>
+              <input id="book-title" type="text" name="book-title" required />
+            </li>
+            <li>
+              <label for="book-author">Book Author: </label>
+              <input id="book-author" type="text" name="book-author" required />
+            </li>
+            <li>
+              <label for="book-pages">Book Pages: </label>
+              <input id="book-pages" type="number" name="book-pages" required min="1" />
+            </li>
+            <li>
+              <span>Read:</span>
+              <div>
+                <input
+                  type="radio"
+                  name="book-read"
+                  id="book-read-yes"
+                  value="yes"
+                  required
+                />
+                <label for="book-read-yes">Yes</label>
+                <input
+                  type="radio"
+                  name="book-read"
+                  id="book-read-no"
+                  value="no"
+                />
+                <label for="book-read-no">No</label>
+              </div>
+            </li>
+            <li>
+              <button class="button" id="add-book" type="button">
+                Add Book
+              </button>
+            </li>
+          </ul>
+        </form>
+        <button class="button" id="add-new-book" type="button">
+          Add New Book
+        </button>
+      </div>
     </main>
   </body>
 </html>

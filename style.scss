@@ -1,20 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
 
-$dark-slate: #334155;
+$slate-700: #334155;
 $white: #fff;
+$slate-800: #1e293b;
 
 html {
   box-sizing: border-box;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: inherit;
   margin: 0;
   padding: 0;
 }
 
 body {
-  background-color: $dark-slate;
+  background-color: $slate-700;
 }
 
 .header {
@@ -32,18 +35,82 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
   padding: 1rem;
+  margin: 1rem;
 
   .book {
-
     .book-title {
       text-align: center;
-      font-family: 'Raleway', sans-serif;
+      font-family: "Raleway", sans-serif;
     }
   }
+}
+
+.book-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .book-form {
+    padding: 2rem;
+    margin: 1rem;
+    background-color: $slate-800;
+    color: $white;
+    border-radius: 5px;
+
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      li {
+        display: grid;
+        grid-template-columns: 150px 1fr;
+        gap: 10px;
+        align-items: center;
+
+        input[type="text"],
+        input[type="number"] {
+          padding: 5px 10px;
+        }
+
+        #add-book {
+          font-size: 1.25rem;
+          grid-column: span 2;
+          justify-self: end;
+        }
+      }
+    }
+  }
+}
+
+#add-new-book {
+  font-size: 1.5rem;
+  color: $white;
+  background-color: $slate-800;
+}
+
+.button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .card {
   background-color: #fff;
   padding: 1rem;
   border-radius: 5px;
+}
+
+@media screen and (max-width: 450px) {
+  .book-form-container {
+    .book-form {
+      ul {
+        li {
+          grid-template-columns: 1fr;
+        }
+      }
+    }
+  }
 }
