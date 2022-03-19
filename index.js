@@ -1,8 +1,13 @@
 const myLibrary = [];
 
-function Book() {
-
+function Book(name, id, pages, read, author) {
+  this.name = name;
+  this.id = id;
+  this.pages = pages;
+  this.read = read;
+  this.author = author;
 }
 
-function addBookToLibrary() {
+function addBookToLibrary(book) {
+  myLibrary.push(book);
 }
