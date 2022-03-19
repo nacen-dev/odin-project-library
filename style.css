@@ -34,16 +34,33 @@ body {
 .books-display {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (minmax(200px, 1fr))[auto-fit];
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  -ms-grid-columns: (minmax(200px, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem;
   padding: 1rem;
   margin: 1rem;
 }
 
+.books-display .book {
+  display: -ms-grid;
+  display: grid;
+  gap: 5px;
+}
+
 .books-display .book .book-title {
   text-align: center;
   font-family: "Raleway", sans-serif;
+}
+
+.books-display .book .delete-book {
+  background: url("./assets/delete.svg");
+  border: none;
+  background-size: cover;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  -ms-grid-column-align: end;
+      justify-self: end;
 }
 
 .book-form-container {

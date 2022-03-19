@@ -1,20 +1,47 @@
-const myLibrary = [];
+import { uuidv4 } from "./helper.js";
 
-function Book(title, pages, read, author) {
+let library = [];
+
+function Book(title, pages, read, author, id) {
   this.title = title;
   this.pages = pages;
   this.read = read;
   this.author = author;
+  this.id = id;
 }
 
 function addBookToLibrary(book) {
-  myLibrary.push(book);
+  library.push(book);
 }
 
-let atomicHabits = new Book("Atomic Habits", 306, true, "James Clear");
-let atomicHabits2 = new Book("Atomic Habits", 306, true, "James Clear");
-let atomicHabits3 = new Book("Atomic Habits", 306, true, "James Clear");
-let atomicHabits4 = new Book("Atomic Habits", 306, true, "James Clear");
+let atomicHabits = new Book(
+  "Atomic Habits",
+  306,
+  true,
+  "James Clear",
+  uuidv4()
+);
+let atomicHabits2 = new Book(
+  "Atomic Habits",
+  306,
+  true,
+  "James Clear",
+  uuidv4()
+);
+let atomicHabits3 = new Book(
+  "Atomic Habits",
+  306,
+  true,
+  "James Clear",
+  uuidv4()
+);
+let atomicHabits4 = new Book(
+  "Atomic Habits",
+  306,
+  true,
+  "James Clear",
+  uuidv4()
+);
 
 addBookToLibrary(atomicHabits);
 addBookToLibrary(atomicHabits2);
@@ -23,11 +50,22 @@ addBookToLibrary(atomicHabits4);
 
 const books = document.querySelector(".books-display");
 
+function deleteBookFromLibrary(id) {
+  library = library.filter((book) => book.id !== id);
+}
+
+function deleteBookFromBooksDisplay(id) {
+  const bookToDelete = document.querySelector(`div[data-id="${id}"]`);
+  books.removeChild(bookToDelete);
+}
+
 function createBookElement(book) {
-  const { title, pages, read, author } = book;
+  const { title, pages, read, author, id } = book;
 
   const bookElement = document.createElement("div");
   bookElement.className = "book card";
+
+  bookElement.dataset.id = id;
 
   const bookTitle = document.createElement("h3");
   bookTitle.textContent = title;
@@ -49,17 +87,26 @@ function createBookElement(book) {
   bookAuthor.className = "book-author";
   bookElement.appendChild(bookAuthor);
 
+  const deleteBook = document.createElement("button");
+  deleteBook.className = "delete-book";
+  bookElement.appendChild(deleteBook);
+
+  deleteBook.addEventListener("click", (event) => {
+    deleteBookFromBooksDisplay(id);
+    deleteBookFromLibrary(id);
+  });
+
   return bookElement;
 }
 
 function addLibraryToBooksDisplay() {
-  myLibrary.forEach((book) => {
+  library.forEach((book) => {
     books.appendChild(createBookElement(book));
   });
 }
 
 function addBookToDisplay(book) {
-  books.appendChild(book)
+  books.appendChild(book);
 }
 
 function toggleFormVisibility() {
@@ -68,7 +115,6 @@ function toggleFormVisibility() {
 }
 
 const addNewBookButton = document.querySelector("#add-new-book");
-
 const addBookButton = document.querySelector("#add-book");
 
 addNewBookButton.addEventListener("click", (event) => {
@@ -91,7 +137,8 @@ addBookButton.addEventListener("click", (event) => {
       bookTitle.value,
       bookPages.value,
       bookRead.value,
-      bookAuthor.value
+      bookAuthor.value,
+      uuidv4()
     );
 
     const newBookElement = createBookElement(newBook);
@@ -101,7 +148,6 @@ addBookButton.addEventListener("click", (event) => {
     addNewBookButton.hidden = false;
     toggleFormVisibility();
   }
-
 });
 
 function resetBookFormValues() {

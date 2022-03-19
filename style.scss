@@ -32,15 +32,28 @@ body {
 
 .books-display {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem;
   padding: 1rem;
   margin: 1rem;
 
   .book {
+    display: grid;
+    gap: 5px;
+    
     .book-title {
       text-align: center;
       font-family: "Raleway", sans-serif;
+    }
+
+    .delete-book {
+      background: url("./assets/delete.svg");
+      border: none;
+      background-size: cover;
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+      justify-self: end;
     }
   }
 }
