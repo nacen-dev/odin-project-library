@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
 html {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -8,5 +9,43 @@ html {
           box-sizing: inherit;
   margin: 0;
   padding: 0;
+}
+
+body {
+  background-color: #334155;
+}
+
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.header .header-title {
+  color: #fff;
+  margin-top: 10px;
+}
+
+.books-display {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(200px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.books-display .book .book-title {
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+}
+
+.card {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 5px;
 }
 /*# sourceMappingURL=style.css.map */
