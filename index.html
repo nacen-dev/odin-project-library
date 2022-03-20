@@ -28,27 +28,21 @@
             </li>
             <li>
               <label for="book-pages">Book Pages: </label>
-              <input id="book-pages" type="number" name="book-pages" required min="1" />
+              <input
+                id="book-pages"
+                type="number"
+                name="book-pages"
+                required
+                min="1"
+              />
             </li>
             <li>
-              <span>Read:</span>
-              <div>
-                <input
-                  type="radio"
-                  name="book-read"
-                  id="book-read-yes"
-                  value="yes"
-                  required
-                />
-                <label for="book-read-yes">Yes</label>
-                <input
-                  type="radio"
-                  name="book-read"
-                  id="book-read-no"
-                  value="no"
-                />
-                <label for="book-read-no">No</label>
-              </div>
+              <label for="book-read-check-box">Have you read this book?</label>
+              <input
+                type="checkbox"
+                name="book-read"
+                id="book-read-check-box"
+              />
             </li>
             <li>
               <button class="button" id="add-book" type="button">

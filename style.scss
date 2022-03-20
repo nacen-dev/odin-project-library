@@ -30,6 +30,14 @@ body {
   }
 }
 
+@mixin icon {
+  background-size: cover;
+  border: none;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
 .books-display {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -40,10 +48,17 @@ body {
   .book {
     display: grid;
     gap: 5px;
-    
+    justify-items: center;
+
     .book-title {
       text-align: center;
       font-family: "Raleway", sans-serif;
+      margin-bottom: 20px;
+    }
+    
+    .read-container {
+      display: flex;
+      gap: 10px;
     }
 
     .delete-book {
@@ -53,7 +68,15 @@ body {
       width: 25px;
       height: 25px;
       cursor: pointer;
-      justify-self: end;
+    }
+
+    .book-read-button {
+      background: url("./assets/check.svg");
+      @include icon;
+    }
+    .book-not-read-button {
+      background: url("./assets/close-circle-outline.svg");
+      @include icon;
     }
   }
 }
@@ -76,6 +99,7 @@ body {
       display: flex;
       flex-direction: column;
       gap: 16px;
+
       li {
         display: grid;
         grid-template-columns: 150px 1fr;
@@ -85,6 +109,13 @@ body {
         input[type="text"],
         input[type="number"] {
           padding: 5px 10px;
+          border-radius: 5px;
+          border: none;
+        }
+
+        #book-read-check-box {
+          justify-self: start;
+          width: 20px;
         }
 
         #add-book {

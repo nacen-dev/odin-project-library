@@ -2,46 +2,23 @@ import { uuidv4 } from "./helper.js";
 
 let library = [];
 
-function Book(title, pages, read, author, id) {
+function Book(title, pages, author, id) {
   this.title = title;
   this.pages = pages;
-  this.read = read;
   this.author = author;
   this.id = id;
 }
+
+Book.prototype.read = false;
 
 function addBookToLibrary(book) {
   library.push(book);
 }
 
-let atomicHabits = new Book(
-  "Atomic Habits",
-  306,
-  true,
-  "James Clear",
-  uuidv4()
-);
-let atomicHabits2 = new Book(
-  "Atomic Habits",
-  306,
-  true,
-  "James Clear",
-  uuidv4()
-);
-let atomicHabits3 = new Book(
-  "Atomic Habits",
-  306,
-  true,
-  "James Clear",
-  uuidv4()
-);
-let atomicHabits4 = new Book(
-  "Atomic Habits",
-  306,
-  true,
-  "James Clear",
-  uuidv4()
-);
+let atomicHabits = new Book("Atomic Habits", 306, "James Clear", uuidv4());
+let atomicHabits2 = new Book("Atomic Habits", 306, "James Clear", uuidv4());
+let atomicHabits3 = new Book("Atomic Habits", 306, "James Clear", uuidv4());
+let atomicHabits4 = new Book("Atomic Habits", 306, "James Clear", uuidv4());
 
 addBookToLibrary(atomicHabits);
 addBookToLibrary(atomicHabits2);
@@ -60,7 +37,7 @@ function deleteBookFromBooksDisplay(id) {
 }
 
 function createBookElement(book) {
-  const { title, pages, read, author, id } = book;
+  const { title, pages, author, id } = book;
 
   const bookElement = document.createElement("div");
   bookElement.className = "book card";
@@ -77,23 +54,44 @@ function createBookElement(book) {
   bookPages.className = "book-pages";
   bookElement.appendChild(bookPages);
 
-  const readElement = document.createElement("p");
-  readElement.textContent = `Read: ${read ? "Have read" : "Not read yet"}`;
-  readElement.className = "book-read";
-  bookElement.appendChild(readElement);
-
   const bookAuthor = document.createElement("p");
   bookAuthor.textContent = `Author: ${author}`;
   bookAuthor.className = "book-author";
   bookElement.appendChild(bookAuthor);
 
+  const readContainer = document.createElement("div");
+  readContainer.className = "read-container";
+  const readElement = document.createElement("p");
+  readElement.textContent = "Read: ";
+  readElement.className = "book-read";
+
+  const bookReadButton = document.createElement("button");
+  bookReadButton.type = "button";
+  bookReadButton.className = book.read
+    ? "book-read-button"
+    : "book-not-read-button";
+
+  readContainer.appendChild(readElement);
+  readContainer.appendChild(bookReadButton);
+  bookElement.appendChild(readContainer);
+
   const deleteBook = document.createElement("button");
+  deleteBook.type = "button";
   deleteBook.className = "delete-book";
+
   bookElement.appendChild(deleteBook);
 
   deleteBook.addEventListener("click", (event) => {
     deleteBookFromBooksDisplay(id);
     deleteBookFromLibrary(id);
+  });
+
+  bookReadButton.addEventListener("click", (event) => {
+    book.read = !book.read;
+
+    bookReadButton.className = book.read
+      ? "book-read-button"
+      : "book-not-read-button";
   });
 
   return bookElement;
@@ -127,19 +125,22 @@ addBookButton.addEventListener("click", (event) => {
   const bookAuthor = document.querySelector("#book-author");
   const bookPages = document.querySelector("#book-pages");
   const bookRead = document.querySelector(`input[name="book-read"]:checked`);
+
   if (
     bookTitle.validity.valid &&
     bookAuthor.validity.valid &&
-    bookPages.validity.valid &&
-    bookRead.validity.valid
+    bookPages.validity.valid
   ) {
     const newBook = new Book(
       bookTitle.value,
       bookPages.value,
-      bookRead.value,
       bookAuthor.value,
       uuidv4()
     );
+
+    if (bookRead) {
+      newBook.read = true;
+    }
 
     const newBookElement = createBookElement(newBook);
 

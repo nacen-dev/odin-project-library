@@ -45,11 +45,20 @@ body {
   display: -ms-grid;
   display: grid;
   gap: 5px;
+  justify-items: center;
 }
 
 .books-display .book .book-title {
   text-align: center;
   font-family: "Raleway", sans-serif;
+  margin-bottom: 20px;
+}
+
+.books-display .book .read-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
 }
 
 .books-display .book .delete-book {
@@ -59,8 +68,24 @@ body {
   width: 25px;
   height: 25px;
   cursor: pointer;
-  -ms-grid-column-align: end;
-      justify-self: end;
+}
+
+.books-display .book .book-read-button {
+  background: url("./assets/check.svg");
+  background-size: cover;
+  border: none;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.books-display .book .book-not-read-button {
+  background: url("./assets/close-circle-outline.svg");
+  background-size: cover;
+  border: none;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
 }
 
 .book-form-container {
@@ -113,6 +138,14 @@ body {
 .book-form-container .book-form ul li input[type="text"],
 .book-form-container .book-form ul li input[type="number"] {
   padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+.book-form-container .book-form ul li #book-read-check-box {
+  -ms-grid-column-align: start;
+      justify-self: start;
+  width: 20px;
 }
 
 .book-form-container .book-form ul li #add-book {
