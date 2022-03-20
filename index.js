@@ -15,16 +15,6 @@ function addBookToLibrary(book) {
   library.push(book);
 }
 
-let atomicHabits = new Book("Atomic Habits", 306, "James Clear", uuidv4());
-let atomicHabits2 = new Book("Atomic Habits", 306, "James Clear", uuidv4());
-let atomicHabits3 = new Book("Atomic Habits", 306, "James Clear", uuidv4());
-let atomicHabits4 = new Book("Atomic Habits", 306, "James Clear", uuidv4());
-
-addBookToLibrary(atomicHabits);
-addBookToLibrary(atomicHabits2);
-addBookToLibrary(atomicHabits3);
-addBookToLibrary(atomicHabits4);
-
 const books = document.querySelector(".books-display");
 
 function deleteBookFromLibrary(id) {
