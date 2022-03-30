@@ -138,14 +138,17 @@ addBookButton.addEventListener("click", (event) => {
     addBookToDisplay(newBookElement);
     addNewBookButton.hidden = false;
     toggleFormVisibility();
+    resetBookFormValues(bookTitle, bookAuthor, bookPages, bookRead);
+  } else {
+    alert("invalid data entered");
   }
 });
 
-function resetBookFormValues() {
+function resetBookFormValues(bookTitle, bookAuthor, bookPages, bookRead) {
   bookTitle.value = "";
   bookAuthor.value = "";
   bookPages.value = "";
-  bookRead.value = "";
+  bookRead.checked = false;
 }
 
 addLibraryToBooksDisplay();
